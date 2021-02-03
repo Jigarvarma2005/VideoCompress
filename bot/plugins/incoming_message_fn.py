@@ -44,7 +44,7 @@ from bot.helper_funcs.utils import(
   delete_downloads
 )
 
-LOGS_CHANNEL = -1001283278354
+LOGS_CHANNEL = -1001459484868
 db = Database(DATABASE_URL, SESSION_NAME)
 CURRENT_PROCESSES = {}
 CHAT_FLOOD = {}

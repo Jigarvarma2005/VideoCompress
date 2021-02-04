@@ -51,8 +51,8 @@ broadcast_ids = {}
         
 async def incoming_start_message_f(bot, update):
     """/start command"""
-    if not await db.is_user_exist(message.chat.id):
-        await db.add_user(message.chat.id)
+    if not await db.is_user_exist(update.chat.id):
+        await db.add_user(update.chat.id)
     update_channel = UPDATES_CHANNEL
     if update_channel:
         try:
@@ -60,7 +60,7 @@ async def incoming_start_message_f(bot, update):
             if user.status == "kicked":
                await bot.send_message(
                    chat_id=update.chat.id,
-                   text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/linux_repo).",
+                   text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/UniversalBotsSupport).",
                    parse_mode="markdown",
                    disable_web_page_preview=True
                )
@@ -82,7 +82,7 @@ async def incoming_start_message_f(bot, update):
         except Exception:
             await bot.send_message(
                 chat_id=update.chat.id,
-                text="Something went Wrong. Contact my [Support Group](https://t.me/linux_repo).",
+                text="Something went Wrong. Contact my [Support Group](https://t.me/UniversalBotsSupport).",
                 parse_mode="markdown",
                 disable_web_page_preview=True)
             return
@@ -92,10 +92,10 @@ async def incoming_start_message_f(bot, update):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton('Updates Channel', url='https://t.me/Discovery_Updates')
+                    InlineKeyboardButton('Updates Channel', url='https://t.me/UniversalBotsUpdate')
                 ],
                 [
-                    InlineKeyboardButton('Support Group', url='https://t.me/linux_repo')
+                    InlineKeyboardButton('Support Group', url='https://t.me/UniversalBotsSupport')
                 ]
             ]
         ),
@@ -104,8 +104,8 @@ async def incoming_start_message_f(bot, update):
     
 async def incoming_compress_message_f(bot, update):
   """/compress command"""
-  if not await db.is_user_exist(message.chat.id):
-      await db.add_user(message.chat.id)
+  if not await db.is_user_exist(update.chat.id):
+      await db.add_user(update.chat.id)
   update_channel = UPDATES_CHANNEL
   if update_channel:
       try:
@@ -113,7 +113,7 @@ async def incoming_compress_message_f(bot, update):
           if user.status == "kicked":
              await bot.send_message(
                  chat_id=update.chat.id,
-                 text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/linux_repo).",
+                 text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/UniversalBotsSupport).",
                  parse_mode="markdown",
                  disable_web_page_preview=True
              )
@@ -135,7 +135,7 @@ async def incoming_compress_message_f(bot, update):
       except Exception:
           await bot.send_message(
               chat_id=update.chat.id,
-              text="Something went Wrong. Contact my [Support Group](https://t.me/linux_repo).",
+              text="Something went Wrong. Contact my [Support Group](https://t.me/UniversalBotsSupport).",
               parse_mode="markdown",
               disable_web_page_preview=True
           )

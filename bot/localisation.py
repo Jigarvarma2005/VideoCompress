@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) @AbirHasan2005
+# (c) @AbirHasan2005 | @Technical-Jigar
 
 from bot.get_cfg import get_config
 

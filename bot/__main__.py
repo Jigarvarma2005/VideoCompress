@@ -95,7 +95,7 @@ if __name__ == "__main__" :
     # BROADCAST Admin Command
     incoming_broadcast_command = MessageHandler(
         broadcast_,
-        filters=filters.command(["broadcast"])
+        filters=filters.command(["broadcast"]) & filters.user(AUTH_USERS) & filters.reply
     )
     app.add_handler(incoming_broadcast_command)
     

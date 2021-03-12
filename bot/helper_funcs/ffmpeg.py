@@ -16,6 +16,7 @@ import time
 import re
 import json
 import subprocess
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import math
 from bot.helper_funcs.display_progress import (
   TimeFormatter
@@ -23,7 +24,8 @@ from bot.helper_funcs.display_progress import (
 from bot.localisation import Localisation
 from bot import (
     FINISHED_PROGRESS_STR,
-    UN_FINISHED_PROGRESS_STR
+    UN_FINISHED_PROGRESS_STR,
+    DOWNLOAD_LOCATION
 )
 
 async def convert_video(video_file, output_directory, total_time, bot, message, target_percentage, isAuto):
@@ -132,7 +134,14 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
                 f'{progress_str}\n'
         try:
           await message.edit_text(
-            text=stats
+            text=stats,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [ 
+                        InlineKeyboardButton('❌ Cancel ❌', callback_data='fuckingdo')
+                    ]
+                ]
+            )
           )
         except:
             pass

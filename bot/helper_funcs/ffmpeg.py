@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | @AbirHasan2005 | @Mrvishal2k2 | @MrBotDeveloper
+# (c) Shrimadhav U K | @AbirHasan2005
 
 # the logging things
 import logging
@@ -17,15 +17,13 @@ import re
 import json
 import subprocess
 import math
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from bot.helper_funcs.display_progress import (
   TimeFormatter
 )
 from bot.localisation import Localisation
 from bot import (
     FINISHED_PROGRESS_STR,
-    UN_FINISHED_PROGRESS_STR,
-    DOWNLOAD_LOCATION
+    UN_FINISHED_PROGRESS_STR
 )
 
 async def convert_video(video_file, output_directory, total_time, bot, message, target_percentage, isAuto):
@@ -46,7 +44,7 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
       "-i",
       video_file,
       "-c:v", 
-      "libx264",
+      "h264",
       "-preset", 
       "ultrafast",
       "-tune",
@@ -134,14 +132,7 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
                 f'{progress_str}\n'
         try:
           await message.edit_text(
-            text=stats,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [ 
-                        InlineKeyboardButton('❌ Cancel ❌', callback_data='fuckingdo')
-                    ]
-                ]
-            )
+            text=stats
           )
         except:
             pass

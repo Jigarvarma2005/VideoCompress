@@ -113,13 +113,13 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
                 f'{progress_str}\n'
         try:
           await message.edit_text(
-            text=stats
+            text=stats,
             reply_markup=InlineKeyboardMarkup(
-                [
-                    [ 
-                        InlineKeyboardButton('❌ Cancel ❌', callback_data='fuckingdo') # Nice callback 🤣🤣
-                    ]
-                ]
+                                               [
+                                                 [ 
+                                                   InlineKeyboardButton('❌ Cancel ❌', callback_data='fuckingdo') # Nice callback 🤣🤣
+                                                 ]
+                                               ]
             )
           )
         except:

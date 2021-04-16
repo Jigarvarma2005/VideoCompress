@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | @AbirHasan2005 | Mrvishal2k2
+# (c) Shrimadhav U K | @AbirHasan2005 | Mrvishal2k2 | Jigarvarma2005
 
 # the logging things
 import logging
@@ -9,7 +9,7 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 LOGGER = logging.getLogger(__name__)
-
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import asyncio
 import os
 import time
@@ -114,6 +114,13 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
         try:
           await message.edit_text(
             text=stats
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [ 
+                        InlineKeyboardButton('❌ Cancel ❌', callback_data='fuckingdo') # Nice callback 🤣🤣
+                    ]
+                ]
+            )
           )
         except:
             pass

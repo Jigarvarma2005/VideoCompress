@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | @AbirHasan2005
+# (c) Shrimadhav U K | @AbirHasan2005 | Mrvishal2k2
 
 # the logging things
 import logging
@@ -16,7 +16,6 @@ import time
 import re
 import json
 import subprocess
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import math
 from bot.helper_funcs.display_progress import (
   TimeFormatter
@@ -24,11 +23,10 @@ from bot.helper_funcs.display_progress import (
 from bot.localisation import Localisation
 from bot import (
     FINISHED_PROGRESS_STR,
-    UN_FINISHED_PROGRESS_STR,
-    DOWNLOAD_LOCATION
+    UN_FINISHED_PROGRESS_STR
 )
 
-async def convert_video(video_file, output_directory, total_time, bot, message, target_percentage, isAuto):
+async def convert_video(video_file, output_directory, total_time, bot, message, chan_msg):
     # https://stackoverflow.com/a/13891070/4723940
     out_put_file_name = output_directory + \
         "/" + str(round(time.time())) + ".mp4"
@@ -46,35 +44,16 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
       "-i",
       video_file,
       "-c:v", 
-      "h264",
+      "libx265",
+      "-vtag",
+      "hvc1",
       "-preset", 
       "ultrafast",
-      "-tune",
-      "film",
       "-c:a",
       "copy",
       out_put_file_name
     ]
-    if not isAuto:
-      filesize = os.stat(video_file).st_size
-      calculated_percentage = 100 - target_percentage
-      target_size = ( calculated_percentage / 100 ) * filesize
-      target_bitrate = int(math.floor( target_size * 8 / total_time ))
-      if target_bitrate // 1000000 >= 1:
-        bitrate = str(target_bitrate//1000000) + "M"
-      elif target_bitrate // 1000 > 1:
-        bitrate = str(target_bitrate//1000) + "k"
-      else:
-        return None
-      extra = [ "-b:v", 
-                bitrate,
-                "-bufsize",
-                bitrate
-              ]
-      for elem in reversed(extra) :
-        file_genertor_command.insert(10, elem)
-    else:
-       target_percentage = 'auto'
+#Done !!
     COMPRESSION_START_TIME = time.time()
     process = await asyncio.create_subprocess_exec(
         *file_genertor_command,
@@ -129,23 +108,23 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
             ''.join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 10))]),
             ''.join([UN_FINISHED_PROGRESS_STR for i in range(10 - math.floor(percentage / 10))])
             )
-        stats = f'📦️ <b>Compressing</b> {target_percentage}%\n\n' \
-                f'⏰️ <b>ETA:</b> {ETA}\n\n' \
+        stats = f'📦️ <b>Converting To H256 </b>\n\n' \
+                f'⏰️ <b>TimeLeft:</b> {ETA}\n\n' \
                 f'{progress_str}\n'
         try:
           await message.edit_text(
-            text=stats,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [ 
-                        InlineKeyboardButton('❌ Cancel ❌', callback_data='fuckingdo')
-                    ]
-                ]
-            )
+            text=stats
           )
         except:
             pass
         
+        try:
+          await chan_msg.edit_text(
+            text=stats
+          )
+        except:
+            pass
+
     # Wait for the subprocess to finish
     stdout, stderr = await process.communicate()
     #if( not isDone):

@@ -13,7 +13,8 @@ from bot import (
     LOGGER,
     TG_BOT_TOKEN,
     BOT_USERNAME,
-    SESSION_NAME
+    SESSION_NAME,
+    DATABASE_URL
 )
 from bot.plugins.new_join_fn import (	
     help_message_f	
@@ -111,6 +112,33 @@ if __name__ == "__main__" :
         filters=filters.command(["log", f"log@{BOT_USERNAME}"]) & filters.chat(chats=AUTH_USERS)
     )
     app.add_handler(upload_log_f_handler)
+    # BAN Admin Command
+    incoming_ban_command = MessageHandler(
+        ban,
+        filters=filters.command(["ban_user"]) & filters.user(AUTH_USERS)
+    )
+    app.add_handler(incoming_ban_command)
+
+    # UNBAN Admin Command
+    incoming_unban_command = MessageHandler(
+        unban,
+        filters=filters.command(["unban_user"]) & filters.user(AUTH_USERS)
+    )
+    app.add_handler(incoming_unban_command)
+
+    # BANNED_USERS Admin Command
+    incoming_banned_command = MessageHandler(
+        _banned_usrs,
+        filters=filters.command(["banned_users"]) & filters.user(AUTH_USERS) & filters.reply
+    )
+    app.add_handler(incoming_banned_command)
+
+    # BROADCAST Admin Command
+    incoming_broadcast_command = MessageHandler(
+        broadcast_,
+        filters=filters.command(["broadcast"]) & filters.user(AUTH_USERS) & filters.reply
+    )
+    app.add_handler(incoming_broadcast_command)
     
     call_back_button_handler = CallbackQueryHandler(
         button

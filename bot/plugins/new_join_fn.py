@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 # (c) Shrimadhav U K | @AbirHasan2005
 
-
-from bot.database import Database
 from bot.localisation import Localisation
 from bot import (
     UPDATES_CHANNEL,

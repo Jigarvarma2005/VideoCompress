@@ -4,9 +4,8 @@ from bot.get_cfg import get_config
 
 class Config(object):
     # You can keep this default
-    SESSION_NAME = get_config("SESSION_NAME", "AHCompressorBot")
-    # Put MongoDB URL
-    DATABASE_URL = get_config("DATABASE_URL", "")
+    SESSION_NAME = get_config("SESSION_NAME", "CompressorBot")
+    
     # get a token from @BotFather
     TG_BOT_TOKEN = get_config("TG_BOT_TOKEN", "")
     # The Telegram API things

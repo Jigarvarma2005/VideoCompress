@@ -1,19 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | @AbirHasan2005
+# (c) Shrimadhav U K | @AbirHasan2005 | Jigarvarma2005
 
-
-from bot.database import Database
 from bot.localisation import Localisation
 from bot import (
     UPDATES_CHANNEL,
-    DATABASE_URL,
     SESSION_NAME
 )
 from pyrogram.types import ChatPermissions, InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 
-db = Database(DATABASE_URL, SESSION_NAME)
 CURRENT_PROCESSES = {}
 CHAT_FLOOD = {}
 broadcast_ids = {}
@@ -35,8 +31,6 @@ async def new_join_f(client, message):
 
 
 async def help_message_f(client, message):
-    if not await db.is_user_exist(message.chat.id):
-        await db.add_user(message.chat.id)
     ## Force Sub ##
     update_channel = UPDATES_CHANNEL
     if update_channel:

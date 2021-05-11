@@ -30,13 +30,11 @@ A Telegram Video Compressor Bot By [@Technical-Jigar](https://t.me/Technical_Jig
 * `BOT_USERNAME` - Your Bot's Username which you send to [@BotFather](https://t.me/BotFather) while creating Bot. ***(Without `@` Before Username!!)***
 * `APP_ID` - Get this from my.telegram.org
 * `API_HASH` - Get this from my.telegram.org
-* `DATABASE_URL` - Your MongoDB Database URL.
 * `AUTH_USERS` - Put your ID & other Sudo Users IDs. Separate with **Space**. Just for using ***Admin Commands***.
 * `UPDATES_CHANNEL` - Put your Channel Username which you want to do Force Sub. But bot should be Admin in that channel. If got any error or not understand anything than ask in [Support Group](https://t.me/linux_repo).
 
 ## Optional Configs:
 * `COMMAND_EXEC` - `/exec` Command Handler.
-* `COMMAND_STATUS` - `/status` Command Handler.
 * `COMMAND_CANCEL` - `/cancel` Command Handler.
 * `COMMAND_COMPRESS` - `/compress` Command Handler.
 * `COMMAND_START` - `/start` Command Handler.

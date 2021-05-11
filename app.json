@@ -19,7 +19,7 @@
     },
     "SESSION_NAME": {
       "description": "Keep this default",
-      "value": "AHCompressBot",
+      "value": "JVCompressBot",
       "required": true
     },
     "TG_BOT_TOKEN": {
@@ -40,14 +40,6 @@
     "AUTH_USERS": {
       "description": "Allow only pre-defined users to use this bot as Sudo User. Separate with Space. Just for using Admin Commands.",
       "value": "715779594",
-      "required": false
-    },
-    "FINISHED_PROGRESS_STR": {
-      "description": "Should be a single character.",
-      "required": false
-    },
-    "UN_FINISHED_PROGRESS_STR": {
-      "description": "Should be a single character.",
       "required": false
     },
     "BOT_USERNAME": {

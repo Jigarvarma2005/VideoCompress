@@ -4,10 +4,6 @@ A Telegram Video Compressor Bot By [@Jigarvarma2005](https://t.me/Jigarvarma2005
 ### Special Features:
 - Bot's Live Status on Channel
 - Force Sub to Channel
-- Database:
-	- Can Broadcast messages
-	- Can Ban-Unban Manually
-	- Can see numbers users in DB
 
 * If you need more help to Deploy Feel Free to ask in [Support Group](https://t.me/linux_repo).
 
@@ -55,6 +51,6 @@ A Telegram Video Compressor Bot By [@Jigarvarma2005](https://t.me/Jigarvarma2005
 </p>
 
 ### Credits:
-* [Jijinr](https://github.com/Jijinr)
+* [Jigar Varma](https://github.com/Jigarvarma2005)
 * [SpEcHide](https://github.com/spechide)
 * [AbirHasan2005](https://github.com/AbirHasan2005)

@@ -57,7 +57,7 @@ async def help_message_f(client, message):
             return
         except Exception:
             await message.reply_text(
-                text="Something went Wrong. Contact my [Support Group](https://t.me/UniversalBotsSupport).",
+                text=f"Add me into your [Updates Channel](https://t.me/{update_channel}), for more help Contact my [Support Group](https://t.me/UniversalBotsSupport).",
                 parse_mode="markdown",
                 disable_web_page_preview=True
             )

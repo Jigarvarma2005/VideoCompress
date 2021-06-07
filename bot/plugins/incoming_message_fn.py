@@ -77,7 +77,7 @@ async def incoming_start_message_f(bot, update):
         except Exception:
             await bot.send_message(
                 chat_id=update.chat.id,
-                text="Something went Wrong. Contact my [Support Group](https://t.me/UniversalBotsSupport).",
+                text=f"Add me into your [Updates Channel](https://t.me/{update_channel}), for more help Contact my [Support Group](https://t.me/UniversalBotsSupport).",
                 parse_mode="markdown",
                 disable_web_page_preview=True)
             return
@@ -128,7 +128,7 @@ async def incoming_compress_message_f(bot, update):
       except Exception:
           await bot.send_message(
               chat_id=update.chat.id,
-              text="Something went Wrong. Contact my [Support Group](https://t.me/UniversalBotsSupport).",
+              text=f"Add me into your [Updates Channel](https://t.me/{update_channel}), for more help Contact my [Support Group](https://t.me/UniversalBotsSupport).",
               parse_mode="markdown",
               disable_web_page_preview=True
           )

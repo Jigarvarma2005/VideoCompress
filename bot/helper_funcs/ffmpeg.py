@@ -43,14 +43,41 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
       progress,
       "-i",
       video_file,
-      "-c:v", 
+      "-map",
+      "0",
+      "-c:v",
       "libx265",
-      "-vtag",
-      "hvc1",
-      "-preset", 
-      "ultrafast",
+      "-metadata",
+      "title=krispEncodes",
+      "-pix_fmt",
+      "yuv420p", 
+      "-preset",
+      "medium",
+      "-s",
+      "800x480",
+      "-crf", 
+      "32", 
       "-c:a",
+      "libopus",
+      "-profile:a",
+      "aac_he_v2",
+      "-ac", 
+      "2",
+      "-ab",
+      "30k",
+      "-vbr",
+      "2",
+      "-c:s",
       "copy",
+      
+      
+  
+        
+      
+      
+      
+        
+
       out_put_file_name
     ]
 #Done !!

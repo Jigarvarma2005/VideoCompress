@@ -69,16 +69,8 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
       "2",
       "-c:s",
       "copy",
-      
-      
-  
-        
-      
-      
-      
-        
-
-      out_put_file_name
+      out_put_file_name,
+       "-y"
     ]
 #Done !!
     COMPRESSION_START_TIME = time.time()

@@ -36,7 +36,7 @@ async def down_load_media_f(client, message):
         os.makedirs(DOWNLOAD_LOCATION)
     if message.reply_to_message is not None:
         start_t = datetime.now()
-        download_location = DOWNLOAD_LOCATION + "/"
+        download_location = f"{DOWNLOAD_LOCATION}/"
         c_time = time.time()
         the_real_download_location = await client.download_media(
             message=message.reply_to_message,
@@ -60,13 +60,13 @@ async def down_load_media_f(client, message):
                 if file_upload is not None:
                     g_response = await upload_to_gdrive(file_upload, mess_age, message, user_id)
                     LOGGER.info(g_response)
-                    
+
             elif message.command[1] == "unrar":
                 file_uploade = await unrar_me(the_real_download_location_g)
                 if file_uploade is not None:
                     gk_response = await upload_to_gdrive(file_uploade, mess_age, message, user_id)
                     LOGGER.info(gk_response)
-                    
+
             elif message.command[1] == "untar":
                  file_uploadg = await untar_me(the_real_download_location_g)
                  if file_uploadg is not None:

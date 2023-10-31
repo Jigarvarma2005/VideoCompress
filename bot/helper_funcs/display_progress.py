@@ -35,7 +35,7 @@ async def progress_for_pyrogram(
     if round(diff % 10.00) == 0 or current == total:
         # if round(current / total * 100, 0) % 5 == 0:
         percentage = current * 100 / total
-        status = DOWNLOAD_LOCATION + "/status.json"
+        status = f"{DOWNLOAD_LOCATION}/status.json"
         if os.path.exists(status):
             with open(status, 'r+') as f:
                 statusMsg = json.load(f)
@@ -50,9 +50,20 @@ async def progress_for_pyrogram(
         estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
         progress = "[{0}{1}] \n📊 <b>Progress:</b> {2}%\n".format(
-            ''.join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 10))]),
-            ''.join([UN_FINISHED_PROGRESS_STR for i in range(10 - math.floor(percentage / 10))]),
-            round(percentage, 2))
+            ''.join(
+                [
+                    FINISHED_PROGRESS_STR
+                    for _ in range(math.floor(percentage / 10))
+                ]
+            ),
+            ''.join(
+                [
+                    UN_FINISHED_PROGRESS_STR
+                    for _ in range(10 - math.floor(percentage / 10))
+                ]
+            ),
+            round(percentage, 2),
+        )
 
         tmp = progress + "{0} of {1}\nSpeed: {2}/s\nETA: {3}\n".format(
             humanbytes(current),
@@ -63,19 +74,9 @@ async def progress_for_pyrogram(
         )
         try:
             if not message.photo:
-                await message.edit_text(
-                    text="{}\n {}".format(
-                        ud_type,
-                        tmp
-                    )
-                )
+                await message.edit_text(text=f"{ud_type}\n {tmp}")
             else:
-                await message.edit_caption(
-                    caption="{}\n {}".format(
-                        ud_type,
-                        tmp
-                    )
-                )
+                await message.edit_caption(caption=f"{ud_type}\n {tmp}")
         except:
             pass
 
@@ -91,16 +92,18 @@ def humanbytes(size):
     while size > power:
         size /= power
         n += 1
-    return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
+    return f"{str(round(size, 2))} {Dic_powerN[n]}B"
 
 
 def TimeFormatter(milliseconds: int) -> str:
-    seconds, milliseconds = divmod(int(milliseconds), 1000)
+    seconds, milliseconds = divmod(milliseconds, 1000)
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    tmp = ((str(days) + "d, ") if days else "") + \
-        ((str(hours) + "h, ") if hours else "") + \
-        ((str(minutes) + "m, ") if minutes else "") + \
-        ((str(seconds) + "s, ") if seconds else "")
+    tmp = (
+        (f"{str(days)}d, " if days else "")
+        + (f"{str(hours)}h, " if hours else "")
+        + (f"{str(minutes)}m, " if minutes else "")
+        + (f"{str(seconds)}s, " if seconds else "")
+    )
     return tmp[:-2]

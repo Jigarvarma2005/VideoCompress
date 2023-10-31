@@ -30,9 +30,7 @@ async def new_join_f(client, message):
 
 
 async def help_message_f(client, message):
-    ## Force Sub ##
-    update_channel = UPDATES_CHANNEL
-    if update_channel:
+    if update_channel := UPDATES_CHANNEL:
         try:
             user = await client.get_chat_member(update_channel, message.chat.id)
             if user.status == "kicked":

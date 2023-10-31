@@ -2,10 +2,12 @@
 
 from bot.get_cfg import get_config
 
+
+
 class Config(object):
     # You can keep this default
     SESSION_NAME = get_config("SESSION_NAME", "CompressorBot")
-    
+
     # get a token from @BotFather
     TG_BOT_TOKEN = get_config("TG_BOT_TOKEN", "")
     # The Telegram API things
@@ -13,14 +15,10 @@ class Config(object):
     API_HASH = get_config("API_HASH", "")
     LOG_CHANNEL = get_config("LOG_CHANNEL", "")
     UPDATES_CHANNEL = get_config("UPDATES_CHANNEL", "") # Without `@` LOL
-     # Get these values from my.telegram.org
     # array to store the channel ID who are authorized to use the bot
-    AUTH_USERS = set(
-        int(x) for x in get_config(
-            "AUTH_USERS",
-            should_prompt=True
-        ).split()
-    )
+    AUTH_USERS = {
+        int(x) for x in get_config("AUTH_USERS", should_prompt=True).split()
+    }
     # the download location, where the HTTP Server runs
     DOWNLOAD_LOCATION = get_config("DOWNLOAD_LOCATION", "/app/downloads")
     # Telegram maximum file upload size
@@ -39,5 +37,4 @@ class Config(object):
     FINISHED_PROGRESS_STR = get_config("FINISHED_PROGRESS_STR", "◈")
     UN_FINISHED_PROGRESS_STR = get_config("UN_FINISHED_PROGRESS_STR", "◇")
     LOG_FILE_ZZGEVC = get_config("LOG_FILE_ZZGEVC", "Log.txt")
-      # because, https://t.me/c/1494623325/5603
     SHOULD_USE_BUTTONS = get_config("SHOULD_USE_BUTTONS", False)

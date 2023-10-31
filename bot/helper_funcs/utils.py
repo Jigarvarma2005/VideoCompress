@@ -14,10 +14,7 @@ LOGGER = logging.getLogger(__name__)
 import os
 
 def checkKey(dict, key):
-  if key in dict.keys():
-    return True
-  else:
-    return False
+  return key in dict.keys()
 
 
 def delete_downloads():
